@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Hello World</title>
+		<style>
+			:root {
+				--gradient-colors: #ff0059, #ff8a00, #ffd300, #5aff00, #00c2ff, #7a00ff,
+					#ff00c8;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			html,
+			body {
+				height: 100%;
+				margin: 0;
+			}
+			body {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+					Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans',
+					'Helvetica Neue', Arial, sans-serif;
+				overflow: hidden;
+				background: linear-gradient(130deg, var(--gradient-colors));
+				background-size: 400% 400%;
+				animation: shift 12s ease-in-out infinite;
+				color: #fff;
+			}
+			h1 {
+				font-size: clamp(3rem, 18vw, 14rem);
+				line-height: 0.9;
+				margin: 0;
+				font-weight: 800;
+				letter-spacing: -0.05em;
+				text-align: center;
+				filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.35));
+				background: linear-gradient(90deg, #fff 0%, #f5f5f5 50%, #ffffff 100%);
+				-webkit-background-clip: text;
+				background-clip: text;
+				color: transparent;
+				position: relative;
+			}
+			h1::after {
+				content: 'Hello World';
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(90deg, var(--gradient-colors));
+				background-size: 300% 300%;
+				animation: textflow 6s linear infinite;
+				mix-blend-mode: screen;
+				-webkit-background-clip: text;
+				background-clip: text;
+				color: transparent;
+				opacity: 0.85;
+			}
+
+			@keyframes shift {
+				0% {
+					background-position: 0% 50%;
+				}
+				50% {
+					background-position: 100% 50%;
+				}
+				100% {
+					background-position: 0% 50%;
+				}
+			}
+			@keyframes textflow {
+				0% {
+					background-position: 0% 50%;
+				}
+				100% {
+					background-position: 200% 50%;
+				}
+			}
+
+			/* Subtle floating motion */
+			@keyframes float {
+				0% {
+					transform: translateY(0px);
+				}
+				50% {
+					transform: translateY(-18px);
+				}
+				100% {
+					transform: translateY(0px);
+				}
+			}
+			h1 {
+				animation: float 5.5s ease-in-out infinite,
+					textpop 0.9s cubic-bezier(0.65, -0.35, 0.25, 1.4) 1;
+			}
+			@keyframes textpop {
+				0% {
+					transform: scale(0.7) translateY(40px);
+					opacity: 0;
+				}
+				60% {
+					transform: scale(1.05) translateY(-6px);
+					opacity: 1;
+				}
+				100% {
+					transform: scale(1) translateY(0);
+					opacity: 1;
+				}
+			}
+
+			/* Accessibility: reduce motion preference */
+			@media (prefers-reduced-motion: reduce) {
+				body,
+				h1,
+				h1::after {
+					animation: none !important;
+				}
+				body {
+					background-size: auto;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Hello World</h1>
+	</body>
+</html>
